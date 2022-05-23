@@ -27,3 +27,15 @@ let books = [
 ]
 let booksHtml = books.map((book) => bookCreator(book)).join('');
 booksContainer.innerHTML = booksHtml;
+
+const addBtn = document.querySelector('#add');
+addBtn.addEventListener('click', ()=>{
+    let myBook = {
+        title: document.querySelector('#title').value,
+        author: document.querySelector('#author').value,
+    };
+    books.push(myBook);
+    booksHtml = books.map((book) => bookCreator(book)).join('');
+    booksContainer.innerHTML = booksHtml;
+});
+
