@@ -4,9 +4,16 @@
 
 In this project, we built a basic website that allows users to add/remove books from a list. This was achieve by using JavaScript objects, arrays, modifying the DOM dynamically and adding basic events Listeners.
 
-## Live Demo
+## Getting Started
 
-link to live demo
+To get a local copy up and running follow these simple example steps.
+
+### Download it as a ZIP file
+or
+
+### Clone it in your local machine using GIT
+to get a local copy , clone the repository using git clone
+(https://github.com/mr-abdellah/e-commerce-website.git)
 
 > Awesome books: plain JavaScript with objects
 

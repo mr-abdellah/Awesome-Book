@@ -4,26 +4,16 @@ const booksContainer = document.querySelector('.books-container');
 const title = document.querySelector('#title');
 const author = document.querySelector('#author');
 
-title.value = window.localStorage.getItem('Title');
-author.value = window.localStorage.getItem('Author');
+books = JSON.parse(localStorage.getItem('books')) || [];
 
 function Book() {
   this.title = 'title';
   this.author = 'author';
 }
 
-const addBtn = document.getElementById('add');
-
-addBtn.addEventListener('click', () => {
-  const newBook = Object.create(Book.prototype);
-
-  newBook.title = title.value;
-  newBook.author = author.value;
-
-  window.localStorage.setItem('Title', title.value);
-  window.localStorage.setItem('Author', author.value);
-
-  books.push(newBook);
+function addBooks(newBook, title, author) {
+  newBook.title = title;
+  newBook.author = author;
 
   const bookContainer = document.createElement('article');
   const bookTitle = document.createElement('h2');
@@ -41,8 +31,8 @@ addBtn.addEventListener('click', () => {
   bookContainer.appendChild(bookAuthor);
   bookContainer.appendChild(deleteButton);
 
-  bookTitle.textContent = title.value;
-  bookAuthor.textContent = `Author: ${author.value}`;
+  bookTitle.textContent = title;
+  bookAuthor.textContent = `Author: ${author}`;
   deleteButton.textContent = 'Delete';
 
   bookContainer.style.borderBottom = '1px solid black';
@@ -55,5 +45,18 @@ addBtn.addEventListener('click', () => {
   deleteButton.addEventListener('click', () => {
     bookContainer.remove();
     books = books.filter((element) => element !== newBook);
+    localStorage.setItem('books', JSON.stringify(books));
   });
+}
+
+for (let i = 0; i < books.length; i += 1) {
+  addBooks(books[i], books[i].title, books[i].author);
+}
+
+const addBtn = document.getElementById('add');
+addBtn.addEventListener('click', () => {
+  const newBook = Object.create(Book.prototype);
+  books.push(newBook);
+  addBooks(newBook, title.value, author.value);
+  localStorage.setItem('books', JSON.stringify(books));
 });
