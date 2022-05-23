@@ -1,62 +1,59 @@
 let books = [];
 
-booksContainer = document.querySelector('.books-container');
-title = document.querySelector('#title');
-author = document.querySelector('#author');
+const booksContainer = document.querySelector('.books-container');
+const title = document.querySelector('#title');
+const author = document.querySelector('#author');
 
 title.value = window.localStorage.getItem('Title');
 author.value = window.localStorage.getItem('Author');
 
 function Book() {
-    this.title = 'title';
-    this.author = 'author';
+  this.title = 'title';
+  this.author = 'author';
 }
 
-let addBtn = document.getElementById('add');
+const addBtn = document.getElementById('add');
 
+addBtn.addEventListener('click', () => {
+  const newBook = Object.create(Book.prototype);
 
-addBtn.addEventListener('click', () =>{
+  newBook.title = title.value;
+  newBook.author = author.value;
 
-    const newBook = Object.create(Book.prototype);
+  window.localStorage.setItem('Title', title.value);
+  window.localStorage.setItem('Author', author.value);
 
-    newBook.title = title.value;
-    newBook.author = author.value;
+  books.push(newBook);
 
-    window.localStorage.setItem('Title', title.value);
-    window.localStorage.setItem('Author', author.value);
+  const bookContainer = document.createElement('article');
+  const bookTitle = document.createElement('h2');
+  const bookAuthor = document.createElement('p');
+  const deleteButton = document.createElement('button');
 
-    books.push(newBook);
+  bookContainer.classList.add('bookContainer');
+  bookTitle.classList.add('bookTitle');
+  bookAuthor.classList.add('bookAuthor');
+  deleteButton.classList.add('btn');
+  deleteButton.classList.add('delete');
 
-    let bookContainer = document.createElement("article");
-    let bookTitle = document.createElement("h2");
-    let bookAuthor = document.createElement("p");
-    let deleteButton=document.createElement("button");
+  booksContainer.appendChild(bookContainer);
+  bookContainer.appendChild(bookTitle);
+  bookContainer.appendChild(bookAuthor);
+  bookContainer.appendChild(deleteButton);
 
-    bookContainer.classList.add("bookContainer");
-    bookTitle.classList.add("bookTitle");
-    bookAuthor.classList.add("bookAuthor");
-    deleteButton.classList.add("btn");
-    deleteButton.classList.add("delete");
+  bookTitle.textContent = title.value;
+  bookAuthor.textContent = `Author: ${author.value}`;
+  deleteButton.textContent = 'Delete';
 
-    booksContainer.appendChild(bookContainer);
-    bookContainer.appendChild(bookTitle);
-    bookContainer.appendChild(bookAuthor);
-    bookContainer.appendChild(deleteButton);
+  bookContainer.style.borderBottom = '1px solid black';
+  bookContainer.style.width = '500px';
+  bookContainer.style.height = '200px';
+  bookContainer.style.padding = '10px';
+  bookContainer.style.marginLeft = '10px';
+  bookContainer.style.marginBottom = '40px';
 
-    bookTitle.textContent = title.value;
-    bookAuthor.textContent = "Author: " + author.value;
-    deleteButton.textContent='Delete';
-
-    bookContainer.style.borderBottom  = "1px solid black";
-    bookContainer.style.width = "500px";
-    bookContainer.style.height = "200px";
-    bookContainer.style.padding='10px';
-    bookContainer.style.marginLeft='10px';
-    bookContainer.style.marginBottom='40px';
-
-    deleteButton.addEventListener("click", () => {
-        bookContainer.remove();
-        books = books.filter(element => element != newBook);
-    })
-}
-)
+  deleteButton.addEventListener('click', () => {
+    bookContainer.remove();
+    books = books.filter((element) => element !== newBook);
+  });
+});
