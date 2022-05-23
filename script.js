@@ -50,7 +50,7 @@ addBtn.addEventListener('click', () => {
   bookContainer.style.height = '200px';
   bookContainer.style.padding = '10px';
   bookContainer.style.marginLeft = '10px';
-  bookContainer.style.marginBottom = '40px';
+  bookContainer.style.marginBottom = '30px';
 
   deleteButton.addEventListener('click', () => {
     bookContainer.remove();
