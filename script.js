@@ -38,5 +38,25 @@ addBtn.addEventListener('click', () =>{
     deleteButton.classList.add("btn");
     deleteButton.classList.add("delete");
 
+    booksContainer.appendChild(bookContainer);
+    bookContainer.appendChild(bookTitle);
+    bookContainer.appendChild(bookAuthor);
+    bookContainer.appendChild(deleteButton);
+
+    bookTitle.textContent = title.value;
+    bookAuthor.textContent = "Author: " + author.value;
+    deleteButton.textContent='Delete';
+
+    bookContainer.style.borderBottom  = "1px solid black";
+    bookContainer.style.width = "500px";
+    bookContainer.style.height = "200px";
+    bookContainer.style.padding='10px';
+    bookContainer.style.marginLeft='10px';
+    bookContainer.style.marginBottom='40px';
+
+    deleteButton.addEventListener("click", () => {
+        bookContainer.remove();
+        books = books.filter(element => element != newBook);
+    })
 }
 )
