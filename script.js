@@ -1,41 +1,42 @@
-const booksContainer = document.querySelector('.books-container');
+let books = [];
 
-function bookCreator({title, author}) {
-    return `
-    <div class="book">
-        <p class="title">${title}</p>
-        <p class="author">${author}</p>
-        <button type="submit" id="removeBtn">Remove</button>
-        <hr>
-    </div>
-    `;
+booksContainer = document.querySelector('.books-container');
+title = document.querySelector('#title');
+author = document.querySelector('#author');
+
+title.value = window.localStorage.getItem('Title');
+author.value = window.localStorage.getItem('Author');
+
+function Book() {
+    this.title = 'title';
+    this.author = 'author';
 }
 
-let books = [
-    {
-        title : 'favour book',
-        author : 'favour',
-    },
-    {
-        title : 'abdullah book',
-        author : 'abdullah',
-    },
-    {
-        title : 'favour book',
-        author : 'favour',
-    },
-]
-let booksHtml = books.map((book) => bookCreator(book)).join('');
-booksContainer.innerHTML = booksHtml;
+let addBtn = document.getElementById('add');
 
-const addBtn = document.querySelector('#add');
-addBtn.addEventListener('click', ()=>{
-    let myBook = {
-        title: document.querySelector('#title').value,
-        author: document.querySelector('#author').value,
-    };
-    books.push(myBook);
-    booksHtml = books.map((book) => bookCreator(book)).join('');
-    booksContainer.innerHTML = booksHtml;
-});
 
+addBtn.addEventListener('click', () =>{
+
+    const newBook = Object.create(Book.prototype);
+
+    newBook.title = title.value;
+    newBook.author = author.value;
+
+    window.localStorage.setItem('Title', title.value);
+    window.localStorage.setItem('Author', author.value);
+
+    books.push(newBook);
+
+    let bookContainer = document.createElement("article");
+    let bookTitle = document.createElement("h2");
+    let bookAuthor = document.createElement("p");
+    let deleteButton=document.createElement("button");
+
+    bookContainer.classList.add("bookContainer");
+    bookTitle.classList.add("bookTitle");
+    bookAuthor.classList.add("bookAuthor");
+    deleteButton.classList.add("btn");
+    deleteButton.classList.add("delete");
+
+}
+)
