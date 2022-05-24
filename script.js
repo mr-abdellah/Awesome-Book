@@ -15,7 +15,7 @@ function addBooks(newBook, title, author) {
   newBook.title = title;
   newBook.author = author;
 
-  const bookContainer = document.createElement('article');
+  const bookContainer = document.createElement('li');
   const bookTitle = document.createElement('h2');
   const bookAuthor = document.createElement('p');
   const deleteButton = document.createElement('button');
@@ -53,8 +53,7 @@ for (let i = 0; i < books.length; i += 1) {
   addBooks(books[i], books[i].title, books[i].author);
 }
 
-const addBtn = document.getElementById('add');
-addBtn.addEventListener('click', () => {
+const addBtn = document.getElementById('add').addEventListener('click', () => {
   const newBook = Object.create(Book.prototype);
   books.push(newBook);
   addBooks(newBook, title.value, author.value);
