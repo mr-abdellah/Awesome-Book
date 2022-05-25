@@ -6,23 +6,33 @@ const title = document.querySelector('#title');
 const author = document.querySelector('#author');
 const addBtn = document.querySelector('#add');
 
-let navLinks = document.querySelector('.navLinks');
-let addSection = document.querySelector('.add-book');
-let containerOfAddedBooks = document.querySelector('.container');
+const addSection = document.querySelector('.add-book');
+const containerOfAddedBooks = document.querySelector('.container');
+const contact = document.querySelector('.contact');
 
-let navList = document.querySelector('#navList').addEventListener('click', (e)=> {
+const navList = document.querySelector('#navList');
+navList.addEventListener('click', (e) => {
   e.preventDefault();
   addSection.style.display = 'none';
+  contact.style.display = 'none';
   containerOfAddedBooks.style.display = 'flex';
 });
 
-let navAdd = document.querySelector('#navAdd').addEventListener('click', (e)=> {
+const navAdd = document.querySelector('#navAdd');
+navAdd.addEventListener('click', (e) => {
   e.preventDefault();
-  addSection.style.display = 'flex';
   containerOfAddedBooks.style.display = 'none';
-  console.log('helloooooooo!!');
-})
+  contact.style.display = 'none';
+  addSection.style.display = 'flex';
+});
 
+const navContact = document.querySelector('#navContact');
+navContact.addEventListener('click', (e) => {
+  e.preventDefault();
+  containerOfAddedBooks.style.display = 'none';
+  addSection.style.display = 'none';
+  contact.style.display = 'flex';
+});
 
 storage = JSON.parse(localStorage.getItem('books')) || [];
 
