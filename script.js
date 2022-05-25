@@ -6,6 +6,24 @@ const title = document.querySelector('#title');
 const author = document.querySelector('#author');
 const addBtn = document.querySelector('#add');
 
+let navLinks = document.querySelector('.navLinks');
+let addSection = document.querySelector('.add-book');
+let containerOfAddedBooks = document.querySelector('.container');
+
+let navList = document.querySelector('#navList').addEventListener('click', (e)=> {
+  e.preventDefault();
+  addSection.style.display = 'none';
+  containerOfAddedBooks.style.display = 'flex';
+});
+
+let navAdd = document.querySelector('#navAdd').addEventListener('click', (e)=> {
+  e.preventDefault();
+  addSection.style.display = 'flex';
+  containerOfAddedBooks.style.display = 'none';
+  console.log('helloooooooo!!');
+})
+
+
 storage = JSON.parse(localStorage.getItem('books')) || [];
 
 class Books {

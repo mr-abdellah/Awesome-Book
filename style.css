@@ -1,3 +1,13 @@
+* {
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -7,7 +17,7 @@
 }
 
 .add-book {
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: flex-end;
   justify-content: space-evenly;
@@ -17,4 +27,41 @@
 input,
 #add {
   border: 2px solid;
+}
+
+input {
+  width: 50vh;
+  height: 10vh;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  border: 1px solid black;
+  /* padding: 1%; */
+}
+
+.nav-bar ul {
+  display: flex;
+  width: 30%;
+  justify-content: space-evenly;
+  list-style: none;
+}
+
+.nav-bar ul a {
+  text-decoration: none;
+  color: black;
+}
+
+.logo {
+  margin-left: 2%;
+}
+
+footer {
+  border: 1px solid black;
+  width: 90%;
+  padding: 5px;
+  margin-top: 200px;
 }
